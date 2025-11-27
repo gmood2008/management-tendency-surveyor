@@ -15,7 +15,14 @@ const App: React.FC = () => {
 
   useEffect(() => {
     // Initialize with current location
-    setQrUrl(window.location.href);
+    // For GitHub Pages, use the full URL
+    const currentUrl = window.location.href;
+    // If running on localhost, suggest the GitHub Pages URL
+    if (currentUrl.includes('localhost') || currentUrl.includes('127.0.0.1')) {
+      setQrUrl('https://gmood2008.github.io/management-tendency-surveyor/');
+    } else {
+      setQrUrl(currentUrl);
+    }
   }, []);
 
   // Function to determine dominant style for a single user

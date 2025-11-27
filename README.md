@@ -27,43 +27,38 @@ View your app in AI Studio: https://ai.studio/apps/drive/1-xyKyTPtyPOCXgqGglRvF3
    npm run dev
    ```
 
-## Deploy to GitHub Pages
+## Deploy to Vercel (Recommended for China)
 
-### Method 1: Automatic Deployment with GitHub Actions (Recommended)
+### Quick Deploy
 
-1. Push your code to GitHub repository
+1. Visit https://vercel.com and login with GitHub
 
-2. Go to your repository Settings → Pages
+2. Click "Add New..." → "Project"
 
-3. Under "Build and deployment", select:
-   - Source: **GitHub Actions**
+3. Import `management-tendency-surveyor` repository
 
-4. The workflow will automatically deploy on every push to `main` branch
+4. Configure (auto-detected):
+   - Framework: Vite
+   - Build Command: `npm run build`
+   - Output Directory: `dist`
 
-5. Your site will be available at: `https://[username].github.io/[repository-name]/`
+5. **Important**: Add Environment Variable:
+   - Key: `VITE_API_KEY`
+   - Value: Your Gemini API Key
+   - Environment: All (Production, Preview, Development)
 
-### Method 2: Manual Deployment
+6. Click "Deploy"
 
-If you prefer manual deployment, add this script to `package.json`:
+7. Your site will be available at: `https://your-project.vercel.app`
 
-```json
-"scripts": {
-  "deploy": "vite build && gh-pages -d dist"
-}
-```
+### Alternative: Deploy to GitHub Pages
 
-Then install `gh-pages`:
-```bash
-npm install -D gh-pages
-```
+1. Push code to GitHub repository
 
-Deploy manually:
-```bash
-npm run deploy
-```
+2. Go to Settings → Pages
 
-### Important Notes
+3. Select Source: **GitHub Actions**
 
-- The app uses relative paths (`base: './'` in vite.config.ts) which works for GitHub Pages
-- Make sure to set your `VITE_API_KEY` environment variable in GitHub repository secrets if you want to use Gemini AI features in production
-- The GitHub Actions workflow is already configured in `.github/workflows/deploy.yml`
+4. Site will be at: `https://[username].github.io/[repository-name]/`
+
+Note: GitHub Pages may require VPN to access in China.
